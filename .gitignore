@@ -133,3 +133,4 @@ dmypy.json
 *.db
 models/medium/*
 output/*
+src/lsp_model_rl/test.ipynb

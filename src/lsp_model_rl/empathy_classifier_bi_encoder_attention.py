@@ -43,13 +43,13 @@ class EmpathyClassifier():
 		self.model_IP = BiEncoderAttentionWithRationaleClassification()
 		self.model_EX = BiEncoderAttentionWithRationaleClassification()
 
-		ER_weights = torch.load(ER_model_path)
+		ER_weights = torch.load(ER_model_path, map_location=torch.device(device))
 		self.model_ER.load_state_dict(ER_weights)
 
-		IP_weights = torch.load(IP_model_path)
+		IP_weights = torch.load(IP_model_path, map_location=torch.device(device))
 		self.model_IP.load_state_dict(IP_weights)
 
-		EX_weights = torch.load(EX_model_path)
+		EX_weights = torch.load(EX_model_path, map_location=torch.device(device))
 		self.model_EX.load_state_dict(EX_weights)
 
 		self.model_ER.to(self.device)
@@ -91,7 +91,7 @@ class EmpathyClassifier():
 								add_special_tokens = True, # Add '[CLS]' and '[SEP]'
 								max_length = 64,           # Pad & truncate all sentences.
 								truncation=True,
-								pad_to_max_length = True,
+								padding = 'max_length',
 								return_attention_mask = True,   # Construct attn. masks.
 								return_tensors = 'pt',     # Return pytorch tensors.
 						)

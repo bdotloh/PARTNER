@@ -3,7 +3,7 @@ import numpy as np
 import nltk
 # input: edited sentence, initial sentence, weights
 from .empathy_classifier_bi_encoder_attention import empathy_classifier
-from .coherence_classifier2 import coherence_classifier
+from .coherence_classifier2 import CoherenceClassifier
 
 orig_sent_list = ["It might help to re-install Python if possible","The version might behind the bug."]
 new_sent_list = ["The version might be the reason for the bug.","The version might be the reason behind the bug."]
@@ -112,7 +112,8 @@ def calc_empathy_score_3dim(seeker_posts, generated_responses):
 
 
 def calc_coherence_score(original_responses, candidate): # original_response: list of strings, candidate: string 
-	(logits, predictions,) = coherence_classifier.predict_empathy(original_responses, candidate)
+	coherence_classifier=CoherenceClassifier(device='cuda' if torch.cuda.is_available() else 'cpu')
+	(logits, predictions,) = coherence_classifier.predict_coherence(original_responses, candidate)
 	logs_1 = [log[1] for log in logits]
 	score = np.mean(log2prob(logs_1))
 	return score
