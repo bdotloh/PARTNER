@@ -13,7 +13,7 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 
-device = 'cuda'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 GPT_model = GPT2LMHeadModel.from_pretrained('microsoft/DialoGPT-medium').to(device)
 GPT_tokenizer = GPT2Tokenizer.from_pretrained('microsoft/DialoGPT-medium')
 

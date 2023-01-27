@@ -13,7 +13,7 @@ import os
 from os.path import dirname, exists, join
 
 import torch
-from lsp_model_rl import GPT2Tokenizer
+from transformers import GPT2Tokenizer
 from tqdm import tqdm
 
 from env import END_OF_TEXT_TOKEN

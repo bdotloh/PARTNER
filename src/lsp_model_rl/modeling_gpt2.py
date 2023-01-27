@@ -18,6 +18,8 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 
+#from .modeling_gpt2 import GPT2LMHeadModel
+from .optim import Adam 
 import logging
 import copy
 import math
@@ -30,7 +32,8 @@ import time
 import nltk
 import numpy as np
 
-from transformers import GPT2PreTrainedModel, GPT2Model
+from transformers import GPT2PreTrainedModel, GPT2Model, GPT2Config, GPT2Tokenizer
+from transformers import PYTORCH_PRETRAINED_BERT_CACHE
 
 from pytorch_pretrained_bert.modeling_gpt2 import GPT2LMHead, Attention, Block, \
 	LayerNorm, MLP
