@@ -30,9 +30,9 @@ class EmpathyClassifier():
 
 	def __init__(self, 
 			device,
-			ER_model_path = 'src/lsp_model_rl/empathy_util/models/ER-bi-encoder-attention.pth', 
-			IP_model_path = 'src/lsp_model_rl/empathy_util/models/IP-bi-encoder-attention.pth',
-			EX_model_path = 'src/lsp_model_rl/empathy_util/models/EX-bi-encoder-attention.pth',
+			ER_model_path = 'src/lsp_model_rl/empathy_util/empathy-models/ER-bi-encoder-attention.pth', 
+			IP_model_path = 'src/lsp_model_rl/empathy_util/empathy-models/IP-bi-encoder-attention.pth',
+			EX_model_path = 'src/lsp_model_rl/empathy_util/empathy-models/EX-bi-encoder-attention.pth',
 			batch_size=2):
 		
 		self.tokenizer = RobertaTokenizer.from_pretrained('roberta-base', do_lower_case=True)
@@ -161,7 +161,7 @@ class EmpathyClassifier():
 '''
 Example:
 '''
-device = torch.device("cuda:0")
+device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
 seeker_posts = ['I need help', 'I want to talk to someone','I do not have any friends.']
 response_posts = ['why do you feel this way?', 'I understand how you feel','do you want to talk about it?']
 
